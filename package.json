@@ -1,0 +1,47 @@
+{
+  "name": "Ashwath",
+  "version": "x.y.zz",
+  "description": "",
+  "contributors": [
+    {
+      "name": "",
+      "email": ""
+    }
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "keywords": [
+    
+  ],
+  "author": {
+      
+    },
+  "licenses": [
+    { 
+	"type": "",
+	"url" : ""
+    }
+  ],
+  "dependencies": {
+    "async": "~0.2.9",
+    "expect.js": "~0.2.0",
+    "expect": "~0.0.2",
+    "express": "~3.4.0",
+    "express-namespace": "~0.1.1",
+    "querystring":"~0.2.0",
+    "request":"~2.27.0",
+    "sprintf-js":"~0.0.7"
+  },
+  "preferGlobal": "true",
+  "main": "/app",
+  "scripts": {
+    
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": ""
+  }
+}
