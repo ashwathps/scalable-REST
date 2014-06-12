@@ -1,0 +1,70 @@
+/*
+
+Cisco Confidential
+
+
+
+Author: Ashwath, Shankar
+
+Updates:
+Initial version - <date>
+*/
+var nm = require('express-namespace'),
+	cmdcRouter = require('./CMDC/cmdc_routes.js'),
+	upmRouter = require('./UPM/upm_routes.js'),
+    ppsRouter = require('./PPS/pps_routes.js'),
+    hepRouter = require('./HEP/hep_routes.js'),
+    admin_handler = require('../admin/main.js'),
+    assets_handler = require('../assets/main.js'),
+    jspaSimRouter = require('./JSPA/jspasim_routes.js');
+    //dataMigrator_handler = require('../dataMigration/main.js');
+
+exports.version = '0.0.1';
+
+exports.handle_all = function(express)
+{
+	console.log("Incoming URL \n");
+	/*
+		Hierarchial routing using express-namespace used
+	*/
+	cmdcRouter.configure_CMDC_handlers(express);
+
+	ppsRouter.configure_PPS_handlers(express);
+
+	upmRouter.configure_UPM_handlers(express);
+
+	hepRouter.configure_HEP_handlers(express);
+    
+    jspaSimRouter.configure_JSPA_SIM_handlers(express);
+	
+    config_AdminAPI(express);
+    
+    config_AssetRouter(express);
+    
+    //config_DataMigration(express);
+};
+
+function config_AdminAPI(express)
+{
+    express.namespace('/admin', function(){
+		express.get('/\??', function(req, res){
+			admin_handler.processQuery({ api: 'ADMIN_API', request: req , response: res });
+		});
+    });
+};
+
+function config_AssetRouter(express){
+    express.namespace('/file\??', function(){
+        express.get('/:path?*/:filename\??', function(req, res){
+           assets_handler.processQuery({ api: 'ASSET_MANAGER_API', request: req, response: res }) ;
+        });
+    });
+}
+
+/*function config_DataMigration(express){
+     express.namespace('/migration\??', function(){
+        express.get('/\??', function(req, res){
+           dataMigrator_handler.processQuery({ api: 'DATA_MIGRATION', request: req, response: res }) ;
+        });
+    });  
+}*/

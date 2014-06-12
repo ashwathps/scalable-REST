@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/repos/tools/!svn/ver/12872/Branches/VSOA/v1.0.20/app
+END
+main.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/tools/!svn/ver/12854/Branches/VSOA/v1.0.20/app/main.js
+END
+vsoa.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/tools/!svn/ver/12854/Branches/VSOA/v1.0.20/app/vsoa.js
+END
+database.sqlite
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/repos/tools/!svn/ver/12854/Branches/VSOA/v1.0.20/app/database.sqlite
+END
+errorHandling.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/repos/tools/!svn/ver/12854/Branches/VSOA/v1.0.20/app/errorHandling.js
+END

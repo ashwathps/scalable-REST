@@ -1,0 +1,89 @@
+{
+  "name": "vsoa",
+  "version": "1.0.10",
+  "description": "Videoscape Open APIs",
+  "contributors": [
+    {
+      "name": "Darshan Rach",
+      "email": "darach@cisco.com"
+    },
+    {
+      "name": "Ashwath Shankar",
+      "email": "ashshank@cisco.com"
+    },
+    {
+      "name": "Puneet Loya",
+      "email": "puloya@cisco.com"
+    },
+    {
+          "name": "Vijaya Kumara",
+          "email": "vijayak2@cisco.com"
+    }
+  ],
+  "homepage": "",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "keywords": [
+    "Simulator",
+    "videoscape"
+  ],
+  "author": {
+      "name": "Darshan Rach",
+      "email": "darach@cisco.com"
+    },
+  "maintainers": [
+    {
+      "name": "Puneet Loya",
+      "email": "puloya@cisco.com"
+    }
+  ],
+  "licenses": [
+    { 
+	"type": "",
+	"url" : ""
+    }
+  ],
+  "dependencies": {
+    "async": "~0.2.9",
+    "expect.js": "~0.2.0",
+    "expect": "~0.0.2",
+    "express": "~3.4.0",
+    "express-namespace": "~0.1.1",
+    "forever":"~0.10.8",
+    "frisby":"~0.6.9",
+    "jasmine-node": "~1.11.0",
+    "json-query":"~0.1.2",
+    "JSV":"~4.0.2",
+    "lodash":"~1.3.1",
+	"mmmagic":"~0.3.5",
+    "node-theseus":"~0.2.1",
+    "optimist":"~0.6.0",
+    "querystring":"~0.2.0",
+    "request":"~2.27.0",
+    "sequelize-sqlite": "~2.0.0-beta.0",
+    "shelljs":"~0.2.6",
+    "sleep":"~1.1.1",
+    "sprintf-js":"~0.0.7",
+    "underscore":"~1.5.2",
+    "util":"~0.4.9"	
+  },
+  "preferGlobal": "true",
+  "main": "lib/vsoa",
+  "scripts": {
+    
+  },
+  "devDependencies": {},
+  "readme": "Really Readme",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": ""
+  },
+  "_id": "vsoa@1.0.10",
+  "dist": {
+    "shasum": "0f46f92ff4164eea26bd731f4338b7d4651bb964"
+  },
+  "_from": "vsoa@",
+  "_resolved": ""
+}

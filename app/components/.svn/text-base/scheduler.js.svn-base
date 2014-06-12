@@ -1,0 +1,58 @@
+/*
+
+Cisco Confidential
+
+
+
+Author: Ashwath Shankar
+
+Updates:
+Initial version - <date>
+*/
+
+var async = require('async');
+
+exports.version = "0.0.1";
+
+/*
+Using async.queue to queue up all the tasks.
+Each task is a command/API to be executed. Its a command pattern.
+
+`cmd.executeQuery(request, response)`
+
+*/
+var q = async.queue(function(params, callback){
+		try{
+			//task.performAction();
+			//eval(task.evalStr);
+			var cmd = require(params['api']);
+            //params['response'].end();
+			cmd.executeQuery(params['request'], params['response']);
+			console.log('scheduler just ran a task');
+			callback();
+		}catch(e)
+		{
+			//callback(e);
+		}
+		
+	}, 200);
+/*
+q.drain = function() {
+    checkDone();
+};*/
+
+function checkDone() {
+    if (q.length() == 0 ) {
+        console.log('Tada! All objects have been copied :)');
+    }
+}
+/*
+Schedules the task by pushing the required parameters into the async.queue
+
+*/
+exports.schedule = function(params, callback)
+{	
+	//q.drain();
+	console.log('pushing task to scheduler queue now \n');
+	q.push(params, callback);
+};

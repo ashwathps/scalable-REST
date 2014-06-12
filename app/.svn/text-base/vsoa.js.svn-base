@@ -1,0 +1,71 @@
+/*
+
+Cisco Confidential
+
+
+
+Author: Ashwath Shankar
+	Darshan Rach
+
+Updates:
+Initial version - <date>
+*/
+var express = require('express'),
+	 	 __ = require('underscore'),
+        qs = require('querystring'),
+		 errorHandling = require('./errorHandling');
+var config = require("../NodeServerInit/config/config").config;
+
+var router = require(__dirname + '/routes/root_routes.js');
+
+var app = express();
+
+var argv_array = process.argv;
+var listen_port = config.API_LISTENER_PORT;
+
+if(argv_array.length > 2 && !__.isNaN(argv_array[2])){
+	listen_port = argv_array[2];
+}
+
+//connect middleware app.use
+//app.use is order important and takes a function that is applied on all requests coming in.
+
+app.use(express.logger('dev'));
+//handle header type text/plain
+
+app.use(function(req, res, next){
+   if(req.is('text/*')){
+        req.text = '';
+        req.setEncoding('utf8');
+        req.on('data', function(chk){ req.text += chk; });
+        req.on('end', next);
+    }else{
+        next();
+    }
+});
+app.use(express.bodyParser()); //for PUT/DEL/POST verbs.
+
+//additional header
+app.use(function(req, res, next){
+    //if(req.is('text/*')){
+    //    res.setHeader("Access-Control-Allow-Origin", "*");
+    //}else{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+    //}
+});
+
+app.use(function(err,req,res,next){    
+	errorHandling.validateJson(err,req, res, next);
+});
+
+app.use(express.responseTime()); //adds header to output giving the response time
+router.handle_all(app);
+
+//order of calls is important
+//res.redirect
+//app.get('^/cmdc/?*?', router.handle_cmdc_request);
+//app.get('*', router.handle_generic);
+
+console.log('VSOA Simulator version 0.0.1 on port ' + listen_port +' \n');
+app.listen(listen_port);

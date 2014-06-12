@@ -1,0 +1,26 @@
+//var _ = require('underscore');
+
+exports.validateJson = function(err,req, res, next) {
+    //console.log(req.headers);
+    if(err)
+    {
+        res.writeHead(400, {
+            'Content-Type' : 'application/json',
+            'User-Agent' : 'NDS'
+        });
+        
+        var responseData = {};
+        if(req.url.indexOf('upm') > -1) 
+            responseData.code = "UPM.400.003";
+        if(req.url.indexOf('pps') > -1) 
+            responseData.code = "PPS.400";
+        responseData.message = "Payload validation of JSON is failed";   
+        res.write(JSON.stringify(responseData));
+        res.end();
+    }
+    else
+    {
+        next();
+    }
+    
+};

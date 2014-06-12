@@ -1,0 +1,39 @@
+var http = require('http');
+
+exports.getResponseForRequest = function(url,host,port,onResult)
+{
+    var options = {
+        host: host,
+        port: port,
+        path: url,
+        method: 'GET',
+        headers: {
+            accept: 'application/json'
+        }
+    };
+    var req = http.request(options, function(res)
+    {    
+        var output = '';
+        res.on('data', function (chunk) {
+            output += chunk;
+        });
+        
+        res.on('end', function() {
+            if(res.statusCode == 200)
+                onResult.showSuccessResults(output);
+            else {
+                output = JSON.parse(output);
+                output = output.error;
+                output.status = res.statusCode;
+                onResult.showFailureResults(output);
+            }
+        });
+          
+    });
+
+    req.on('error', function(err) {
+        //res.send('error: ' + err.message);
+    });
+
+    req.end();
+};
